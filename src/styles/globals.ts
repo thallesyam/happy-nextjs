@@ -2,7 +2,11 @@ import { createGlobalStyle } from 'styled-components'
 
 export const GlobalStyle = createGlobalStyle`
   :root {
+    --white: #fff;
+    --black: #000;
+
     --bg-light: #EBF2F5;
+    --bg-blue: linear-gradient(329.54deg, #29B6D1 0%, #00C7C7 100%);
   }
 
   * {
@@ -36,6 +40,7 @@ export const GlobalStyle = createGlobalStyle`
 
   button {
     cursor: pointer;
+    border: 0;
   }
 
   [disabled] {
