@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Header as HeaderStyled } from './styles'
 import { Button } from '../Button/index'
+import { Location } from '../Location'
 
 export function Header() {
   return (
@@ -12,10 +13,7 @@ export function Header() {
           </a>
         </Link>
 
-        <div>
-          <strong>São Paulo</strong>
-          <p>São Paulo</p>
-        </div>
+        <Location />
       </section>
 
       <Link href="/admin/login" passHref>

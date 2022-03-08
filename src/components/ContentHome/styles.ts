@@ -41,7 +41,7 @@ export const Container = styled.main`
       bottom: 8rem;
 
       display: block;
-      width: 5rem;
+      width: 5.5rem;
     }
   }
 `

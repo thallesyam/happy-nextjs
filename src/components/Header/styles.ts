@@ -12,20 +12,6 @@ export const Header = styled.header`
     align-items: center;
 
     gap: 4rem;
-
-    strong,
-    p {
-      color: var(--white);
-      font-size: 1.25rem;
-    }
-
-    > strong {
-      font-weight: 800;
-    }
-
-    > p {
-      font-weight: 400;
-    }
   }
 
   a {
