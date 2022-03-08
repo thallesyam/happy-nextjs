@@ -1,12 +1,18 @@
 import { Header } from '../components/Header'
 import { Layout } from '../components/Layout'
-import { Container } from '../styles/pages/Home'
+import { ContentHome } from '../components/ContentHome'
+import { Container, Wrapper } from '../styles/pages/Home'
+import { useEffect } from 'react'
 
 export default function Home() {
   return (
     <Layout title="Home">
       <Container>
-        <Header />
+        <Wrapper>
+          <Header />
+
+          <ContentHome />
+        </Wrapper>
       </Container>
     </Layout>
   )

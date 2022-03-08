@@ -26,9 +26,20 @@ export const Button = styled.button<IButton>`
   font-weight: 700;
   font-size: ${({ theme }) => theme.fontSize};
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   transition: 0.2s all;
+
   &:hover {
     color: ${({ theme }) => theme.textHoverColor};
     background: ${({ theme }) => theme.hover};
+
+    > svg {
+      path {
+        stroke: ${({ theme }) => theme.textHoverColor};
+      }
+    }
   }
 `

@@ -13,12 +13,12 @@ export function Header() {
         </Link>
 
         <div>
-          <strong>Rio do Sul</strong>
-          <p>Santa Catarina</p>
+          <strong>São Paulo</strong>
+          <p>São Paulo</p>
         </div>
       </section>
 
-      <Link href="/admin/login" passHref prefetch>
+      <Link href="/admin/login" passHref>
         <a>
           <Button
             bgColor="#12D4E0"

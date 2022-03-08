@@ -1,11 +1,8 @@
 import styled from 'styled-components'
 
 export const Header = styled.header`
-  width: 100%;
-  max-width: 1120px;
-
   padding-top: 4rem;
-  margin: 0 auto;
+  margin: 0 auto 3rem;
 
   display: flex;
   justify-content: space-between;
@@ -27,12 +24,13 @@ export const Header = styled.header`
     }
 
     > p {
-      font-weight: 600;
+      font-weight: 400;
     }
   }
 
   a {
     width: 100%;
     max-width: 222px;
+    text-decoration: none;
   }
 `
