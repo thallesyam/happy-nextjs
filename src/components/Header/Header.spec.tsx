@@ -5,8 +5,6 @@ describe('Header component', () => {
   it('should render correctly image link', () => {
     render(<Header />)
 
-    screen.debug()
-
     const image = screen.queryByAltText('Logo Happy')
     const link = expect(image.parentNode)
 
@@ -17,8 +15,6 @@ describe('Header component', () => {
 
   it('should render correctly button link', () => {
     render(<Header />)
-
-    screen.debug()
 
     const link = expect(screen.queryByText('Acesso Restrito').parentNode)
 

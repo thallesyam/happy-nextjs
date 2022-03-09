@@ -23,6 +23,7 @@ export function ContentHome() {
               textHoverColor="#15C3D6"
             >
               <svg
+                data-testid="svg-test"
                 width="32"
                 height="32"
                 viewBox="0 0 32 32"

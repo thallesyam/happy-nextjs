@@ -38,7 +38,7 @@ export const Container = styled.main`
     > a {
       position: absolute;
       right: 0;
-      bottom: 8rem;
+      bottom: 8.8rem;
 
       display: block;
       width: 5.5rem;
