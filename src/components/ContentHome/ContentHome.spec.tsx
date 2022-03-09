@@ -20,7 +20,7 @@ describe('ContentHome component', () => {
   it('should render correctly button link', () => {
     render(<ContentHome />)
 
-    const button = screen.queryByTestId('svg-test').parentNode
+    const button = screen.queryByTestId('svg-testid').parentNode
     const link = expect(button.parentNode)
 
     link.toBeInTheDocument()
