@@ -2,11 +2,11 @@ import { ReactNode } from 'react'
 import { Button as ButtonStyled } from './styles'
 
 type IButton = {
-  onClick?: () => void
   children: ReactNode
   textHoverColor: string
   bgColor: string
   width: string
+  onClick?: () => void
   hover?: string
   height?: string
   fontSize?: string
