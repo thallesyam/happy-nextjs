@@ -24,6 +24,6 @@ describe('ContentHome component', () => {
     const link = expect(button.parentNode)
 
     link.toBeInTheDocument()
-    link.toHaveAttribute('href', '/map')
+    link.toHaveAttribute('href', '/location')
   })
 })
