@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import { Header } from '.'
 
 describe('Header component', () => {
@@ -7,8 +7,22 @@ describe('Header component', () => {
 
     screen.debug()
 
-    const image = expect(screen.getByAltText('Logo Happy'))
+    const image = screen.queryByAltText('Logo Happy')
+    const link = expect(image.parentNode)
 
-    image.toBeInTheDocument()
+    expect(image).toBeInTheDocument()
+    link.toBeInTheDocument()
+    link.toHaveAttribute('href', '/')
+  })
+
+  it('should render correctly button link', () => {
+    render(<Header />)
+
+    screen.debug()
+
+    const link = expect(screen.queryByText('Acesso Restrito').parentNode)
+
+    link.toBeInTheDocument()
+    link.toHaveAttribute('href', '/admin/login')
   })
 })
