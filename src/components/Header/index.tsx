@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { Header as HeaderStyled } from './styles'
-import { Button } from '../Button/index'
+import { Button } from '../Button'
 import { Location } from '../Location'
 
 export function Header() {
