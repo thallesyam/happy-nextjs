@@ -7,7 +7,7 @@ export function Header() {
   return (
     <HeaderStyled>
       <section>
-        <Link href="/">
+        <Link href="/" passHref>
           <a>
             <img src="/images/logo.svg" alt="Logo Happy" />
           </a>

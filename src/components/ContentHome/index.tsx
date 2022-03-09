@@ -13,7 +13,7 @@ export function ContentHome() {
       <section className="image-section">
         <img src="/images/kids-home.svg" alt="Kids Image" />
 
-        <Link href="/map">
+        <Link href="/map" passHref>
           <a>
             <Button
               width="5rem"
