@@ -2,7 +2,6 @@ import { Header } from '../components/Header'
 import { Layout } from '../components/Layout'
 import { ContentHome } from '../components/ContentHome'
 import { Container, Wrapper } from '../styles/pages/Home'
-import { useEffect } from 'react'
 
 export default function Home() {
   return (

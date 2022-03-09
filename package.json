@@ -10,6 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@react-leaflet/universal-leaflet": "^1.0.1",
     "axios": "^0.26.0",
     "leaflet": "^1.7.1",
     "next": "12.1.0",

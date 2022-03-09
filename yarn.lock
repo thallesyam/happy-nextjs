@@ -748,6 +748,11 @@
   resolved "https://registry.yarnpkg.com/@react-leaflet/core/-/core-1.1.1.tgz#827fd05bb542cf874116176d8ef48d5b12163f81"
   integrity sha512-7PGLWa9MZ5x/cWy8EH2VzI4T8q5WpuHbixzCDXqixP/WyqwIrg5NDUPgYuFnB4IEIZF+6nA265mYzswFo/h1Pw==
 
+"@react-leaflet/universal-leaflet@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@react-leaflet/universal-leaflet/-/universal-leaflet-1.0.1.tgz#be0942f144e7ef259fd76dcc36d99974cd1f1d6b"
+  integrity sha512-pMTKLWECNzHWOjbYC9QWb6vbGqB8QvAU/X5JaX7A+nyQzsuzmGaYKwKuPTmbKTGkRFEYjVyoXbjpzAkT2fXluA==
+
 "@rushstack/eslint-patch@^1.0.8":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.1.0.tgz#7f698254aadf921e48dda8c0a6b304026b8a9323"
