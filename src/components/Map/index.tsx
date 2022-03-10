@@ -27,6 +27,7 @@ export default function Map() {
           position={[orphanage.latitude, orphanage.longitude]}
         >
           <Popup
+            data-testid="marker-testid"
             closeButton={false}
             minWidth={240}
             maxWidth={240}
