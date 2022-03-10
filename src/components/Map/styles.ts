@@ -4,6 +4,10 @@ export const Container = styled.section`
   .leaflet-container {
     position: relative;
 
+    .leaflet-control-container {
+      display: none;
+    }
+
     .link-add-orphanage {
       z-index: 999;
       position: absolute;

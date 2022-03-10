@@ -2,16 +2,13 @@ import Link from 'next/link'
 import { Header as HeaderStyled } from './styles'
 import { Button } from '../Button'
 import { Location } from '../Location'
+import { Logo } from '../Logo'
 
 export function Header() {
   return (
     <HeaderStyled>
       <section>
-        <Link href="/" passHref>
-          <a>
-            <img src="/images/logo.svg" alt="Logo Happy" />
-          </a>
-        </Link>
+        <Logo />
 
         <Location />
       </section>

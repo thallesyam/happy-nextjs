@@ -79,7 +79,7 @@ export default function Map() {
               width="64px"
               height="64px"
               bgColor="#15C3D6"
-              hover="#96FEFF"
+              hover="#17D6EB"
               textHoverColor="#15C3D6"
             >
               <svg
