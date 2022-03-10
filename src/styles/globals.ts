@@ -7,6 +7,8 @@ export const GlobalStyle = createGlobalStyle`
 
     --bg-light: #EBF2F5;
     --bg-blue: linear-gradient(329.54deg, #29B6D1 0%, #00C7C7 100%);
+
+    --blue-900: #0089a5;
   }
 
   * {

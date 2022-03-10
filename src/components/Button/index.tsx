@@ -10,6 +10,7 @@ type IButton = {
   hover?: string
   height?: string
   fontSize?: string
+  radius?: string
 }
 
 export function Button({
@@ -21,6 +22,7 @@ export function Button({
   width,
   height = '4rem',
   fontSize = '1.125rem',
+  radius = '1.25rem',
   ...rest
 }: IButton) {
   const theme = {
@@ -30,6 +32,7 @@ export function Button({
     hover,
     width,
     height,
+    radius,
   }
 
   return (

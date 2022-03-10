@@ -7,6 +7,7 @@ type ITheme = {
   background: string
   hover: string
   fontSize: string
+  radius: string
 }
 
 type IButton = {
@@ -21,7 +22,7 @@ export const Button = styled.button<IButton>`
   color: var(--white);
   background: ${({ theme }) => theme.background};
 
-  border-radius: 1.25rem;
+  border-radius: ${({ theme }) => theme.radius};
 
   font-weight: 700;
   font-size: ${({ theme }) => theme.fontSize};
