@@ -1,5 +1,8 @@
 import dynamic from 'next/dynamic'
+import { Button } from '../../components/Button'
+import { FileInput } from '../../components/FileInput'
 import { FormContainer } from '../../components/FormContainer'
+import { Input } from '../../components/Input'
 import { Layout } from '../../components/Layout'
 import { Sidebar } from '../../components/Sidebar'
 import { TitleForm } from '../../components/TitleGroup'
@@ -22,6 +25,52 @@ export default function CreateOrphanage() {
             <TitleForm title="Dados" />
 
             <MapWithNoSSR />
+
+            <Input name="name" labelName="Nome" />
+
+            <Input
+              isTextArea
+              name="about"
+              height="7.5rem"
+              labelName="Sobre"
+              labelDescription="Máximo de 300 catacteres"
+              maxLength={300}
+            />
+
+            <Input name="phone" labelName="Número de Whatsapp" type="number" />
+
+            <FileInput />
+
+            <TitleForm title="Visitação" />
+
+            <Input
+              isTextArea
+              name="instruction"
+              height="7.5rem"
+              labelName="Instruções"
+              maxLength={300}
+            />
+
+            <Input name="hours" labelName="Horário das visitas" />
+
+            <div className="boolean_container">
+              <label>Atende fim de semana?</label>
+
+              <div className="boolean_container_buttons">
+                <button className={`afirmative active`}>Sim</button>
+                <button className={`negative`}>Não</button>
+              </div>
+            </div>
+
+            <Button
+              width="548px"
+              textHoverColor="#fff"
+              bgColor="#37C77F"
+              hover="#3EE08F"
+              disabled
+            >
+              Confirmar
+            </Button>
           </FormContainer>
         </section>
       </Container>

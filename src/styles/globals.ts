@@ -11,11 +11,20 @@ export const GlobalStyle = createGlobalStyle`
     --blue-900: #0089a5;
     --blue-500: #15C3D6;
 
+    --gray-800: #5C8599;
     --gray-700: #4D6F80;
     --gray-500: #8FA7B2;
     --gray-300: #D3E2E5;
 
     --white-500: #F5F8FA;
+
+    --green-500: #37C77F;
+    --green-200: #A1E9C5;
+    --green-100: #EDFFF6;
+
+    --red-500: #FF669D;
+    --red-200: #FFBCD4;
+    --red-100: #FFE9F1;
   }
 
   * {

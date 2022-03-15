@@ -1,7 +1,7 @@
-import { ReactNode } from 'react'
+import { ButtonHTMLAttributes, ReactNode } from 'react'
 import { Button as ButtonStyled } from './styles'
 
-type IButton = {
+type IButton = ButtonHTMLAttributes<HTMLButtonElement> & {
   children: ReactNode
   textHoverColor: string
   bgColor: string

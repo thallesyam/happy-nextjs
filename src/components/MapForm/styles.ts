@@ -3,6 +3,8 @@ import styled from 'styled-components'
 export const Container = styled.section`
   width: 100%;
 
+  margin-bottom: 2.5rem;
+
   .leaflet-container {
     border-radius: 1.25rem 1.25rem 0 0;
     position: relative;
