@@ -10,6 +10,8 @@ export const GlobalStyle = createGlobalStyle`
 
     --blue-900: #0089a5;
     --blue-500: #15C3D6;
+
+    --gray-500: #8FA7B2;
   }
 
   * {
