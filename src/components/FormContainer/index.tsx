@@ -1,11 +1,11 @@
-import { ReactNode } from 'react'
+import { FormHTMLAttributes, ReactNode } from 'react'
 
 import { Container } from './styles'
 
-interface FormContainerProps {
+type FormContainerProps = FormHTMLAttributes<HTMLFormElement> & {
   children: ReactNode
 }
 
-export function FormContainer({ children }: FormContainerProps) {
-  return <Container>{children}</Container>
+export function FormContainer({ children, ...rest }: FormContainerProps) {
+  return <Container {...rest}>{children}</Container>
 }

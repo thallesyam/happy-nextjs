@@ -11,7 +11,11 @@ export const GlobalStyle = createGlobalStyle`
     --blue-900: #0089a5;
     --blue-500: #15C3D6;
 
+    --gray-700: #4D6F80;
     --gray-500: #8FA7B2;
+    --gray-300: #D3E2E5;
+
+    --white-500: #F5F8FA;
   }
 
   * {
