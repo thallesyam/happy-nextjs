@@ -20,7 +20,7 @@ export default function Map() {
         <TileLayer url={url} />
 
         <Marker icon={mapIcon} position={[-23.6821604, -46.8754915]}>
-          {orphanages.map((orphanage) => (
+          {orphanages?.map((orphanage) => (
             <Popup
               key={orphanage.id}
               data-testid="marker-testid"
