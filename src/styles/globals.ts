@@ -9,6 +9,7 @@ export const GlobalStyle = createGlobalStyle`
     --bg-blue: linear-gradient(329.54deg, #29B6D1 0%, #00C7C7 100%);
 
     --blue-900: #0089a5;
+    --blue-500: #15C3D6;
   }
 
   * {
