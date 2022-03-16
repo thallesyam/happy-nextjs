@@ -28,7 +28,7 @@ const orphanage = {
   longitude: -46.8754915,
 }
 
-const OrphanageContext = createContext({} as IOrphanageContext)
+export const OrphanageContext = createContext({} as IOrphanageContext)
 
 export function OrphanageProvider({ children }: IOrphanageProvider) {
   const [orphanages, setOrphanages] = useState<IOrphanages[]>([])

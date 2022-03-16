@@ -40,18 +40,6 @@ export const Container = styled.section`
 
       margin: 0;
       padding: 0 0.75rem 0 1.5rem;
-
-      > p {
-        margin: 0;
-        font-size: 1.25rem;
-        color: var(--blue-900);
-        font-weight: 600;
-      }
-
-      a {
-        display: block;
-        width: 40px;
-      }
     }
   }
 

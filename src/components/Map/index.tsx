@@ -4,7 +4,7 @@ import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
 import { mapIcon } from '../../utils/mapIcon'
 import { Button } from '../Button'
 import { useOrphanageContext } from '../../contexts/OrphanageContext'
-import { slugFormatter } from '../../utils/slugFormatter'
+import { PopupLink } from '../PopupLink'
 
 const url = `https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.NEXT_PUBLIC_ACCESS_TOKEN_MAP_BOX}`
 
@@ -29,44 +29,7 @@ export default function Map() {
               maxWidth={240}
               className="map-popup"
             >
-              <p>{orphanage.name}</p>
-
-              <Link href={`/orphanage/${slugFormatter(orphanage.name)}`}>
-                <a data-testid="link-testid">
-                  <Button
-                    width="40px"
-                    height="40px"
-                    bgColor="#15C3D6"
-                    hover="#96FEFF"
-                    textHoverColor="#15C3D6"
-                    radius="0.75rem"
-                  >
-                    <svg
-                      data-testid="svg-arrow-testid"
-                      width="20"
-                      height="20"
-                      viewBox="0 0 20 20"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M4.16675 10H15.8334"
-                        stroke="white"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M10 4.16675L15.8333 10.0001L10 15.8334"
-                        stroke="white"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </Button>
-                </a>
-              </Link>
+              <PopupLink orphanage={orphanage} />
             </Popup>
           ))}
         </Marker>
