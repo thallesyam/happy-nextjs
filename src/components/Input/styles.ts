@@ -8,7 +8,7 @@ type IInput = {
   theme: ITheme
 }
 
-export const Container = styled.section`
+export const Container = styled.section<IInput>`
   label {
     font-weight: 600;
     color: var(--gray-500);
@@ -22,26 +22,35 @@ export const Container = styled.section`
       font-weight: 300;
     }
   }
-`
 
-export const Input = styled.input<IInput>`
-  width: 100%;
-  margin: 0.5rem 0 2rem;
+  > div {
+    margin-bottom: 2rem;
 
-  padding: 0 0.5rem;
-  border-radius: 20px;
+    > p {
+      font-size: 0.75rem;
+      color: var(--red-500);
+    }
+  }
 
-  background-color: var(--white-500);
-  outline: none;
-  border: 1px solid var(--gray-300);
+  .input_element {
+    width: 100%;
+    margin: 0.5rem 0 0rem;
 
-  height: ${({ theme }) => (theme.height ? theme.height : '4rem')};
-  color: var(--black);
+    padding: 0 1rem;
+    border-radius: 20px;
+
+    background-color: var(--white-500);
+    outline: none;
+    border: 1px solid var(--gray-300);
+
+    height: ${({ theme }) => (theme.height ? theme.height : '4rem')};
+    color: var(--black);
+  }
 `
 
 export const TextArea = styled.textarea<IInput>`
   width: 100% !important;
-  margin: 0.5rem 0 2rem;
+  margin: 0.5rem 0 0;
 
   padding: 1rem;
   border-radius: 20px;

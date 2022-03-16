@@ -1,46 +1,89 @@
-import { InputHTMLAttributes, TextareaHTMLAttributes } from 'react'
-import {
-  Container,
-  Input as InputStyled,
-  TextArea as TextAreaStyled,
-} from './styles'
+import { forwardRef, InputHTMLAttributes, TextareaHTMLAttributes } from 'react'
+import { FieldError } from 'react-hook-form'
+import InputMask from 'react-input-mask'
+
+import { Container, TextArea as TextAreaStyled } from './styles'
 
 type IInput = InputHTMLAttributes<HTMLInputElement> &
   TextareaHTMLAttributes<HTMLTextAreaElement> & {
     name: string
+    error: FieldError
     labelName?: string
+    mask?: string
+    maskChar?: string
     labelDescription?: string
-    isNotShowLabel?: boolean
+    notShowLabel?: boolean
+    notMaskedInput?: boolean
     height?: string
     isTextArea?: boolean
   }
 
-export function Input({
-  isNotShowLabel = false,
-  name,
-  labelName,
-  labelDescription,
-  height,
-  isTextArea = false,
-  ...rest
-}: IInput) {
+function InputBase(
+  {
+    notShowLabel = false,
+    notMaskedInput = true,
+    name,
+    error,
+    labelName,
+    mask,
+    maskChar,
+    labelDescription,
+    height,
+    isTextArea = false,
+    ...rest
+  }: IInput,
+  ref
+) {
   const theme = {
     height,
   }
+
   return (
-    <Container>
-      {!isNotShowLabel && (
+    <Container theme={theme}>
+      {!notShowLabel && (
         <label htmlFor={name}>
           {labelName}
           {labelDescription && <p>{labelDescription}</p>}
         </label>
       )}
 
-      {isTextArea ? (
-        <TextAreaStyled id={name} name={name} theme={theme} {...rest} />
-      ) : (
-        <InputStyled id={name} name={name} {...rest} theme={theme} />
-      )}
+      <div>
+        {isTextArea ? (
+          <TextAreaStyled
+            id={name}
+            name={name}
+            theme={theme}
+            {...rest}
+            ref={ref}
+          />
+        ) : (
+          <>
+            {notMaskedInput ? (
+              <input
+                className="input_element"
+                ref={ref}
+                id={name}
+                name={name}
+                {...rest}
+              />
+            ) : (
+              <InputMask
+                className="input_element"
+                ref={ref}
+                id={name}
+                name={name}
+                mask={mask}
+                maskChar={maskChar}
+                {...rest}
+              />
+            )}
+          </>
+        )}
+
+        {!!error && <p>{error.message}</p>}
+      </div>
     </Container>
   )
 }
+
+export const Input = forwardRef(InputBase)

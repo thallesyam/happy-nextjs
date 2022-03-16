@@ -1,5 +1,9 @@
 import dynamic from 'next/dynamic'
 import { ChangeEvent, useState } from 'react'
+import * as yup from 'yup'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { useForm, SubmitHandler } from 'react-hook-form'
+
 import { Button } from '../../components/Button'
 import { FileInput } from '../../components/FileInput'
 import { FormContainer } from '../../components/FormContainer'
@@ -8,24 +12,49 @@ import { Layout } from '../../components/Layout'
 import { Sidebar } from '../../components/Sidebar'
 import { TitleForm } from '../../components/TitleGroup'
 import { Container } from '../../styles/pages/CreateOrphanage'
+import { LeafletMouseEvent } from 'leaflet'
 
 export type IPreviewImage = {
   name: string
   url: string
 }
 
-const initialButtonClass = {
-  afirmativeClass: 'afirmative active',
-  negativeClass: 'negative',
+type CreateOrphanageFormData = {
+  name: string
+  about: string
+  phone: string
+  instruction: string
 }
+
+const createOrphanageFormSchema = yup.object().shape({
+  about: yup.string().required('O campo sobre obrigatório'),
+  name: yup.string().required('O campo nome é obrigatório'),
+  phone: yup.string().required('O campo telefone é obrigatório'),
+  instruction: yup.string().required('O campo instruções é obrigatório'),
+  hours: yup.string().required('O campo horas é obrigatório'),
+})
 
 export default function CreateOrphanage() {
   const MapWithNoSSR = dynamic(() => import('../../components/MapForm'), {
     ssr: false,
   })
+  const { register, handleSubmit, formState } = useForm({
+    resolver: yupResolver(createOrphanageFormSchema),
+  })
+  const { errors, isSubmitting } = formState
+
+  const [position, setPosition] = useState({ latitude: 0, longitude: 0 })
   const [images, setImages] = useState<File[]>([])
   const [previewImages, setPreviewImages] = useState<IPreviewImage[]>([])
-  const [buttonClass, setButtonClass] = useState(initialButtonClass)
+  const [isOpenOnWeeks, setIsOpenOnWeeks] = useState(true)
+
+  function handleClickOnConfirmButton() {
+    setIsOpenOnWeeks(true)
+  }
+
+  function handleClickOnNegativeButton() {
+    setIsOpenOnWeeks(false)
+  }
 
   function handleSelectImages(event: ChangeEvent<HTMLInputElement>) {
     if (!event.target.files) {
@@ -62,18 +91,26 @@ export default function CreateOrphanage() {
     )
   }
 
-  function handleClickOnConfirmButton() {
-    setButtonClass({
-      afirmativeClass: 'afirmative active',
-      negativeClass: 'negative',
+  function handleMapClick(event: LeafletMouseEvent) {
+    const { lat, lng } = event.latlng
+
+    setPosition({
+      latitude: lat,
+      longitude: lng,
     })
   }
 
-  function handleClickOnNegativeButton() {
-    setButtonClass({
-      afirmativeClass: 'afirmative',
-      negativeClass: 'negative active',
-    })
+  const handleCreateOrphanage: SubmitHandler<CreateOrphanageFormData> = async (
+    values
+  ) => {
+    const data = {
+      ...values,
+      images,
+      buttonClass: isOpenOnWeeks,
+      position,
+    }
+
+    console.log('Values', data)
   }
 
   return (
@@ -84,23 +121,38 @@ export default function CreateOrphanage() {
         <section>
           <h1>Adicione um orfanato</h1>
 
-          <FormContainer onSubmit={() => console.log('THALLES')}>
+          <FormContainer onSubmit={handleSubmit(handleCreateOrphanage)}>
             <TitleForm title="Dados" />
 
-            <MapWithNoSSR />
-
-            <Input name="name" labelName="Nome" />
+            <MapWithNoSSR handleMapClick={handleMapClick} position={position} />
 
             <Input
+              error={errors.name}
+              name="name"
+              labelName="Nome"
+              {...register('name')}
+            />
+
+            <Input
+              error={errors.about}
               isTextArea
               name="about"
               height="7.5rem"
               labelName="Sobre"
               labelDescription="Máximo de 300 catacteres"
               maxLength={300}
+              {...register('about')}
             />
 
-            <Input name="phone" labelName="Número de Whatsapp" type="number" />
+            <Input
+              notMaskedInput={false}
+              error={errors.phone}
+              name="phone"
+              labelName="Número de Whatsapp"
+              mask="(99) 9999-9999"
+              maskChar=" "
+              {...register('phone')}
+            />
 
             <FileInput
               previewImages={previewImages}
@@ -111,14 +163,24 @@ export default function CreateOrphanage() {
             <TitleForm title="Visitação" />
 
             <Input
+              error={errors.instruction}
               isTextArea
               name="instruction"
               height="7.5rem"
               labelName="Instruções"
               maxLength={300}
+              {...register('instruction')}
             />
 
-            <Input name="hours" labelName="Horário das visitas" />
+            <Input
+              notMaskedInput={false}
+              error={errors.hours}
+              name="hours"
+              labelName="Horário das visitas"
+              mask="D\as 99 às 99"
+              maskChar=" "
+              {...register('hours')}
+            />
 
             <div className="boolean_container">
               <label>Atende fim de semana?</label>
@@ -127,14 +189,14 @@ export default function CreateOrphanage() {
                 <button
                   type="button"
                   onClick={handleClickOnConfirmButton}
-                  className={buttonClass.afirmativeClass}
+                  className={`afirmative ${isOpenOnWeeks ? 'active' : ''}`}
                 >
                   Sim
                 </button>
                 <button
                   type="button"
                   onClick={handleClickOnNegativeButton}
-                  className={buttonClass.negativeClass}
+                  className={`negative ${!isOpenOnWeeks ? 'active' : ''}`}
                 >
                   Não
                 </button>
@@ -146,9 +208,9 @@ export default function CreateOrphanage() {
               textHoverColor="#fff"
               bgColor="#37C77F"
               hover="#3EE08F"
-              disabled
+              type="submit"
             >
-              Confirmar
+              {isSubmitting ? 'Carregando...' : 'Confirmar'}
             </Button>
           </FormContainer>
         </section>

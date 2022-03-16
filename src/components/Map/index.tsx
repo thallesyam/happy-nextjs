@@ -13,13 +13,13 @@ export default function Map() {
   return (
     <Container>
       <MapContainer
-        center={[-23.6821604, -46.8754915]}
+        center={[-23.54221, -46.47116]}
         zoom={10}
         style={{ width: '100%', height: '100%' }}
       >
         <TileLayer url={url} />
 
-        <Marker icon={mapIcon} position={[-23.6821604, -46.8754915]}>
+        <Marker icon={mapIcon} position={[-23.54221, -46.47116]}>
           {orphanages?.map((orphanage) => (
             <Popup
               key={orphanage.id}

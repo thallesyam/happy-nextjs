@@ -1,22 +1,34 @@
-import { useState } from 'react'
-import { MapContainer, Marker, TileLayer } from 'react-leaflet'
+import { LeafletMouseEvent } from 'leaflet'
+import { MapContainer, Marker, TileLayer, useMapEvents } from 'react-leaflet'
 import { mapIcon } from '../../utils/mapIcon'
 
 import { Container } from './styles'
 
-export default function MapForm() {
-  const [position, setPosition] = useState({ latitude: 0, longitude: 0 })
+type IPosition = {
+  latitude: number
+  longitude: number
+}
 
-  function handleMapClick() {
-    console.log('handleMapClick')
-  }
+type IMapForm = {
+  handleMapClick: (event: LeafletMouseEvent) => void
+  position?: IPosition
+}
 
+function Map({ handleMapClick }: IMapForm) {
+  useMapEvents({
+    click: handleMapClick,
+  })
+
+  return null
+}
+
+export default function MapForm({ handleMapClick, position }: IMapForm) {
   return (
     <Container>
       <MapContainer
-        center={[-23.6821604, -46.8754915]}
+        center={[-23.54221, -46.47116]}
         style={{ width: '100%', height: 280 }}
-        zoom={15}
+        zoom={10}
         onclick={handleMapClick}
       >
         <TileLayer
@@ -30,7 +42,10 @@ export default function MapForm() {
             position={[position.latitude, position.longitude]}
           />
         )}
+
+        <Map handleMapClick={handleMapClick} />
       </MapContainer>
+
       <div className="map_info">
         <p>Clique no mapa para adicionar a localização</p>
       </div>
