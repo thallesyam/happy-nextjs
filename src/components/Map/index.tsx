@@ -4,6 +4,7 @@ import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
 import { mapIcon } from '../../utils/mapIcon'
 import { Button } from '../Button'
 import { useOrphanageContext } from '../../contexts/OrphanageContext'
+import { slugFormatter } from '../../utils/slugFormatter'
 
 const url = `https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.NEXT_PUBLIC_ACCESS_TOKEN_MAP_BOX}`
 
@@ -23,7 +24,6 @@ export default function Map() {
           {orphanages?.map((orphanage) => (
             <Popup
               key={orphanage.id}
-              data-testid="marker-testid"
               closeButton={false}
               minWidth={240}
               maxWidth={240}
@@ -31,8 +31,8 @@ export default function Map() {
             >
               <p>{orphanage.name}</p>
 
-              <Link href={`/orphanage/${orphanage.name}`}>
-                <a>
+              <Link href={`/orphanage/${slugFormatter(orphanage.name)}`}>
+                <a data-testid="link-testid">
                   <Button
                     width="40px"
                     height="40px"
