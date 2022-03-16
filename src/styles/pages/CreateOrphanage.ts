@@ -33,7 +33,7 @@ export const Container = styled.section`
         margin-bottom: 0.5rem;
       }
 
-      > .boolean_container_buttons {
+      > div {
         display: grid;
         grid-template-columns: 1fr 1fr;
         align-items: center;

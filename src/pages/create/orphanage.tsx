@@ -1,4 +1,5 @@
 import dynamic from 'next/dynamic'
+import { ChangeEvent, useState } from 'react'
 import { Button } from '../../components/Button'
 import { FileInput } from '../../components/FileInput'
 import { FormContainer } from '../../components/FormContainer'
@@ -8,10 +9,72 @@ import { Sidebar } from '../../components/Sidebar'
 import { TitleForm } from '../../components/TitleGroup'
 import { Container } from '../../styles/pages/CreateOrphanage'
 
+export type IPreviewImage = {
+  name: string
+  url: string
+}
+
+const initialButtonClass = {
+  afirmativeClass: 'afirmative active',
+  negativeClass: 'negative',
+}
+
 export default function CreateOrphanage() {
   const MapWithNoSSR = dynamic(() => import('../../components/MapForm'), {
     ssr: false,
   })
+  const [images, setImages] = useState<File[]>([])
+  const [previewImages, setPreviewImages] = useState<IPreviewImage[]>([])
+  const [buttonClass, setButtonClass] = useState(initialButtonClass)
+
+  function handleSelectImages(event: ChangeEvent<HTMLInputElement>) {
+    if (!event.target.files) {
+      return
+    }
+
+    const selectedImages = Array.from(event.target.files)
+
+    event.target.value = ''
+
+    const allImages = [...images, ...selectedImages]
+
+    setImages(allImages)
+
+    const selectedPreviewImages = selectedImages.map((image) => {
+      return {
+        name: image.name,
+        url: URL.createObjectURL(image),
+      }
+    })
+
+    const allImagesPreview = [...previewImages, ...selectedPreviewImages]
+
+    setPreviewImages(allImagesPreview)
+  }
+
+  function handleRemoveImage(image: IPreviewImage) {
+    setPreviewImages(
+      previewImages.map((image) => image).filter((img) => img.url !== image.url)
+    )
+
+    setImages(
+      images.map((image) => image).filter((img) => img.name !== image.name)
+    )
+  }
+
+  function handleClickOnConfirmButton() {
+    setButtonClass({
+      afirmativeClass: 'afirmative active',
+      negativeClass: 'negative',
+    })
+  }
+
+  function handleClickOnNegativeButton() {
+    setButtonClass({
+      afirmativeClass: 'afirmative',
+      negativeClass: 'negative active',
+    })
+  }
 
   return (
     <Layout title="Criar orfanato">
@@ -39,7 +102,11 @@ export default function CreateOrphanage() {
 
             <Input name="phone" labelName="Número de Whatsapp" type="number" />
 
-            <FileInput />
+            <FileInput
+              previewImages={previewImages}
+              handleSelectImages={handleSelectImages}
+              handleRemoveImage={handleRemoveImage}
+            />
 
             <TitleForm title="Visitação" />
 
@@ -56,9 +123,21 @@ export default function CreateOrphanage() {
             <div className="boolean_container">
               <label>Atende fim de semana?</label>
 
-              <div className="boolean_container_buttons">
-                <button className={`afirmative active`}>Sim</button>
-                <button className={`negative`}>Não</button>
+              <div>
+                <button
+                  type="button"
+                  onClick={handleClickOnConfirmButton}
+                  className={buttonClass.afirmativeClass}
+                >
+                  Sim
+                </button>
+                <button
+                  type="button"
+                  onClick={handleClickOnNegativeButton}
+                  className={buttonClass.negativeClass}
+                >
+                  Não
+                </button>
               </div>
             </div>
 

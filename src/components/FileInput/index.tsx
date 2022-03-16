@@ -1,12 +1,28 @@
-import { Container } from './styles'
+import { ChangeEvent } from 'react'
+import { IPreviewImage } from '../../pages/create/orphanage'
+import { Container, LabelNewImage, ImageContainer } from './styles'
 
-export function FileInput() {
+type IFileInput = {
+  previewImages: IPreviewImage[]
+  handleRemoveImage: (image: IPreviewImage) => void
+  handleSelectImages: (event: ChangeEvent<HTMLInputElement>) => void
+}
+
+export function FileInput({
+  previewImages,
+  handleRemoveImage,
+  handleSelectImages,
+}: IFileInput) {
+  const theme = {
+    grid: previewImages.length > 0,
+  }
+
   return (
     <Container>
       <label htmlFor="images">Fotos</label>
 
-      <div className="images-container">
-        {/* {previewImages.map((image) => {
+      <ImageContainer theme={theme}>
+        {previewImages.map((image) => {
           return (
             <div key={image.url}>
               <span
@@ -39,9 +55,9 @@ export function FileInput() {
               <img src={image.url} alt={'name'} className="new-image" />
             </div>
           )
-        })} */}
+        })}
 
-        <label htmlFor="image[]" className="new-image">
+        <LabelNewImage htmlFor="image[]">
           <svg
             width="16"
             height="16"
@@ -67,14 +83,14 @@ export function FileInput() {
               </linearGradient>
             </defs>
           </svg>
-        </label>
-      </div>
+        </LabelNewImage>
+      </ImageContainer>
 
       <input
         type="file"
         multiple
         accept=".png, .jpg, .jpeg"
-        onChange={() => console.log('Image')}
+        onChange={handleSelectImages}
         id="image[]"
       />
     </Container>
