@@ -22,15 +22,16 @@ export default function Map() {
 
         <Marker icon={mapIcon} position={[-23.54221, -46.47116]}>
           {orphanages?.map((orphanage) => (
-            <Popup
-              key={orphanage.id}
-              closeButton={false}
-              minWidth={240}
-              maxWidth={240}
-              className="map-popup"
-            >
-              <PopupLink orphanage={orphanage} />
-            </Popup>
+            <div key={orphanage.id} data-testid="popup-testid">
+              <Popup
+                closeButton={false}
+                minWidth={240}
+                maxWidth={240}
+                className="map-popup"
+              >
+                <PopupLink orphanage={orphanage} />
+              </Popup>
+            </div>
           ))}
         </Marker>
 

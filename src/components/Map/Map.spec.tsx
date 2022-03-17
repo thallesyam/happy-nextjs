@@ -1,4 +1,6 @@
 import { render, screen } from '@testing-library/react'
+
+import { OrphanageProvider } from '../../contexts/OrphanageContext'
 import Map from '.'
 
 describe('Map component', () => {
@@ -10,5 +12,21 @@ describe('Map component', () => {
 
     link.toBeInTheDocument()
     link.toHaveAttribute('href', '/create/orphanage')
+  })
+
+  it('should render correctly map marker', async () => {
+    function RenderContextOrphanage() {
+      return (
+        <OrphanageProvider>
+          <Map />
+        </OrphanageProvider>
+      )
+    }
+
+    render(RenderContextOrphanage())
+
+    screen.debug()
+
+    expect(screen.queryByTestId('popup-testid')).toBeInTheDocument()
   })
 })
