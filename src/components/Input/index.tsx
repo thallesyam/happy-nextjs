@@ -41,13 +41,13 @@ function InputBase(
   return (
     <Container theme={theme}>
       {!notShowLabel && (
-        <label htmlFor={name}>
-          {labelName}
+        <div className="label_container">
+          <label htmlFor={name}>{labelName}</label>
           {labelDescription && <p>{labelDescription}</p>}
-        </label>
+        </div>
       )}
 
-      <div>
+      <div className="input_container">
         {isTextArea ? (
           <TextAreaStyled
             id={name}

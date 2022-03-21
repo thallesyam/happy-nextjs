@@ -26,6 +26,10 @@ type CreateOrphanageFormData = {
   instruction: string
 }
 
+type ICreateOrphanage = {
+  onSubmitTest?: (data: CreateOrphanageFormData) => void
+}
+
 const createOrphanageFormSchema = yup.object().shape({
   about: yup.string().required('O campo sobre obrigatório'),
   name: yup.string().required('O campo nome é obrigatório'),
@@ -34,7 +38,7 @@ const createOrphanageFormSchema = yup.object().shape({
   hours: yup.string().required('O campo horas é obrigatório'),
 })
 
-export default function CreateOrphanage() {
+export default function CreateOrphanage({ onSubmitTest }: ICreateOrphanage) {
   const MapWithNoSSR = dynamic(() => import('../../components/MapForm'), {
     ssr: false,
   })
@@ -108,6 +112,10 @@ export default function CreateOrphanage() {
       images,
       buttonClass: isOpenOnWeeks,
       position,
+    }
+
+    if (onSubmitTest) {
+      onSubmitTest(data)
     }
 
     console.log('Values', data)
@@ -204,6 +212,7 @@ export default function CreateOrphanage() {
             </div>
 
             <Button
+              data-testid="submit-testid"
               width="548px"
               textHoverColor="#fff"
               bgColor="#37C77F"

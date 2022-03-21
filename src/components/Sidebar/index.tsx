@@ -18,6 +18,7 @@ export function Sidebar() {
             textHoverColor="#fff"
           >
             <svg
+              data-testid="svg-testid"
               width="24"
               height="24"
               viewBox="0 0 24 24"

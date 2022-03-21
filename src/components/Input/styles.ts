@@ -9,21 +9,24 @@ type IInput = {
 }
 
 export const Container = styled.section<IInput>`
-  label {
-    font-weight: 600;
-    color: var(--gray-500);
-
+  .label_container {
     display: flex;
     align-items: center;
     gap: 2rem;
 
     > p {
-      font-size: 0.875;
+      font-size: 0.875rem;
       font-weight: 300;
+      color: var(--gray-500);
     }
   }
 
-  > div {
+  label {
+    font-weight: 600;
+    color: var(--gray-500);
+  }
+
+  > .input_container {
     margin-bottom: 2rem;
 
     > p {

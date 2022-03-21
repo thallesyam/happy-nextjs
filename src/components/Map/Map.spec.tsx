@@ -25,8 +25,6 @@ describe('Map component', () => {
 
     render(RenderContextOrphanage())
 
-    screen.debug()
-
     expect(screen.queryByTestId('popup-testid')).toBeInTheDocument()
   })
 })
