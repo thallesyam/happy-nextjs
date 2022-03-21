@@ -13,6 +13,7 @@ import { Sidebar } from '../../components/Sidebar'
 import { TitleForm } from '../../components/TitleGroup'
 import { Container } from '../../styles/pages/CreateOrphanage'
 import { LeafletMouseEvent } from 'leaflet'
+import { api } from '../../service/api'
 
 export type IPreviewImage = {
   name: string
@@ -24,6 +25,22 @@ type CreateOrphanageFormData = {
   about: string
   phone: string
   instruction: string
+  hours: string
+}
+
+type IPositionMap = {
+  latitude: number
+  longitude: number
+}
+
+type IResponseAxios = {
+  name: string
+  about: string
+  phone: string
+  instruction: string
+  images: File[]
+  buttonClass: boolean
+  position: IPositionMap
 }
 
 type ICreateOrphanage = {
@@ -107,18 +124,27 @@ export default function CreateOrphanage({ onSubmitTest }: ICreateOrphanage) {
   const handleCreateOrphanage: SubmitHandler<CreateOrphanageFormData> = async (
     values
   ) => {
-    const data = {
+    const orphanage = {
       ...values,
       images,
-      buttonClass: isOpenOnWeeks,
+      open_on_weekends: isOpenOnWeeks,
       position,
     }
 
     if (onSubmitTest) {
-      onSubmitTest(data)
+      onSubmitTest(orphanage)
     }
 
-    console.log('Values', data)
+    try {
+      const { data } = await api.post<IResponseAxios>(
+        '/create/orphanage',
+        orphanage
+      )
+
+      console.log(orphanage)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
@@ -157,7 +183,7 @@ export default function CreateOrphanage({ onSubmitTest }: ICreateOrphanage) {
               error={errors.phone}
               name="phone"
               labelName="Número de Whatsapp"
-              mask="(99) 9999-9999"
+              mask="(99) 99999-9999"
               maskChar=" "
               {...register('phone')}
             />
