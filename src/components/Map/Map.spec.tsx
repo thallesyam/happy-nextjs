@@ -14,7 +14,7 @@ describe('Map component', () => {
     link.toHaveAttribute('href', '/create/orphanage')
   })
 
-  it('should render correctly map marker', async () => {
+  it('not should render map marker', async () => {
     function RenderContextOrphanage() {
       return (
         <OrphanageProvider>
@@ -24,7 +24,6 @@ describe('Map component', () => {
     }
 
     render(RenderContextOrphanage())
-
     expect(screen.queryByTestId('popup-testid')).toBeInTheDocument()
   })
 })

@@ -18,7 +18,10 @@ export function PopupLink({ orphanage }: IPopupLink) {
   return (
     <Container>
       <p>{orphanage.name}</p>
-      <Link href={`/orphanage/${slugFormatter(orphanage.name)}`}>
+      <Link
+        href={`/orphanage/${slugFormatter(orphanage.name)}`}
+        as={`/orphanage/${orphanage.id}`}
+      >
         <a data-testid="link-testid">
           <Button
             width="40px"
