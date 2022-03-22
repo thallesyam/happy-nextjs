@@ -135,16 +135,10 @@ export default function CreateOrphanage({ onSubmitTest }: ICreateOrphanage) {
       onSubmitTest(orphanage)
     }
 
-    try {
-      const { data } = await api.post<IResponseAxios>(
-        '/create/orphanage',
-        orphanage
-      )
-
-      console.log(orphanage)
-    } catch (error) {
-      console.log(error)
-    }
+    const { data } = await api.post<IResponseAxios>(
+      '/create/orphanage',
+      orphanage
+    )
   }
 
   return (

@@ -47,12 +47,12 @@ describe('CreateOrphanage component', () => {
 
       expect(onSubmitTest).toBeCalledWith({
         about: 'Teste Sobre',
-        buttonClass: true,
+        open_on_weekends: true,
         images: [],
         hours: 'Das 09 às 18',
         instruction: 'Teste instruções',
         name: 'Thalles',
-        phone: '(11) 9322-4526',
+        phone: '(11) 93224-5266',
         position: {
           latitude: 0,
           longitude: 0,
