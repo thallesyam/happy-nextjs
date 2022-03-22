@@ -3,8 +3,10 @@ import Error from 'next/error'
 import fs from 'fs'
 import formidable, { File } from 'formidable'
 import { query as q } from 'faunadb'
-import { fauna } from '../../../service/fauna'
+import { v4 as uuid } from 'uuid'
+import moment from 'moment'
 
+import { fauna } from '../../../service/fauna'
 import '../../../service/cloudinary'
 import cloudinary from 'cloudinary/cloudinary'
 
@@ -19,6 +21,7 @@ type IImage = {
 }
 
 type IResponseAxios = {
+  id: string
   name: string | string[]
   about: string | string[]
   phone: string | string[]
@@ -27,6 +30,8 @@ type IResponseAxios = {
   isOpenOnWeeks: string | string[]
   latitude: string | string[]
   longitude: string | string[]
+  createdAt: number
+  updatedAt: number
 }
 
 export const config = {
@@ -103,6 +108,7 @@ export default function handler(
       } = fields
 
       const data: IResponseAxios = {
+        id: uuid(),
         name,
         about,
         phone,
@@ -111,6 +117,8 @@ export default function handler(
         latitude,
         longitude,
         images,
+        createdAt: moment().unix(),
+        updatedAt: moment().unix(),
       }
 
       const orphanage = await fauna.query(
