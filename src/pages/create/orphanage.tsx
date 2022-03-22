@@ -39,7 +39,7 @@ type IResponseAxios = {
   phone: string
   instruction: string
   images: File[]
-  buttonClass: boolean
+  isOpenOnWeeks: boolean
   position: IPositionMap
 }
 
@@ -124,22 +124,40 @@ export default function CreateOrphanage({ onSubmitTest }: ICreateOrphanage) {
   const handleCreateOrphanage: SubmitHandler<CreateOrphanageFormData> = async (
     values
   ) => {
-    const orphanage = {
-      ...values,
-      images,
-      open_on_weekends: isOpenOnWeeks,
-      position,
-    }
+    const { name, about, hours, instruction, phone } = values
+    const formData = new FormData()
+
+    formData.append('name', name)
+    formData.append('about', about)
+    formData.append('hours', hours)
+    formData.append('instruction', instruction)
+    formData.append('phone', phone)
+    formData.append('latitude', String(position.latitude))
+    formData.append('longitude', String(position.longitude))
+    formData.append('isOpenOnWeeks', String(isOpenOnWeeks))
+
+    images.forEach((image) => {
+      formData.append('file', image)
+    })
 
     if (onSubmitTest) {
+      const orphanage = {
+        ...values,
+        images,
+        open_on_weekends: isOpenOnWeeks,
+        position,
+      }
+
       onSubmitTest(orphanage)
       return
     }
 
     const { data } = await api.post<IResponseAxios>(
       '/create/orphanage',
-      orphanage
+      formData
     )
+
+    console.log(data)
   }
 
   return (

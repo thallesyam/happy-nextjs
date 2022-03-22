@@ -1,20 +1,78 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-
 import { NextApiRequest, NextApiResponse } from 'next'
+import Error from 'next/error'
+import fs from 'fs'
+import formidable, { File } from 'formidable'
+import { query as q } from 'faunadb'
+import { fauna } from '../../../service/fauna'
 
-type IPositionMap = {
-  latitude: number
-  longitude: number
+import '../../../service/cloudinary'
+import cloudinary from 'cloudinary/cloudinary'
+
+type IImageUpload = {
+  secure_url: string
+  original_filename: string
 }
 
-type IRequestAxios = {
+type IImage = {
+  url: string
   name: string
-  about: string
-  phone: string
-  instruction: string
-  images: File[]
-  buttonClass: boolean
-  position: IPositionMap
+}
+
+type IResponseAxios = {
+  name: string | string[]
+  about: string | string[]
+  phone: string | string[]
+  instruction: string | string[]
+  images: IImage[]
+  isOpenOnWeeks: string | string[]
+  latitude: string | string[]
+  longitude: string | string[]
+}
+
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+}
+
+async function uploadImageToCloud(file: File): Promise<IImageUpload> {
+  const image = cloudinary.v2.uploader.upload(
+    `./public/upload/${file.originalFilename}`,
+    (error: Error, result: IImageUpload) => {
+      if (!!error) {
+        console.log('Image error: ', error)
+      }
+
+      return result
+    }
+  )
+
+  return await image
+}
+
+async function saveFile(files: File[]) {
+  const receivedFiles = files.length > 1 ? files : Array(files)
+
+  const images = await Promise.all(
+    receivedFiles.map(async (file) => {
+      const data = fs.readFileSync(file.filepath)
+
+      fs.writeFileSync(`./public/upload/${file.originalFilename}`, data)
+
+      const image = await uploadImageToCloud(file)
+
+      fs.unlink(`./public/upload/${file.originalFilename}`, (err) => {
+        console.log(`./public/upload/${file.originalFilename}`)
+      })
+
+      return {
+        url: image.secure_url,
+        name: image.original_filename,
+      }
+    })
+  )
+
+  return images
 }
 
 export default function handler(
@@ -27,23 +85,43 @@ export default function handler(
     return response.status(405).json({ message: 'Method Not Allowed' })
   }
 
-  const {
-    name,
-    position,
-    hours,
-    about,
-    instruction,
-    images,
-    open_on_weekends,
-  } = request.body
+  try {
+    const form = new formidable.IncomingForm({
+      multiples: true,
+    })
 
-  console.log({
-    name,
-    position,
-    hours,
-    about,
-    instruction,
-    images,
-    open_on_weekends,
-  })
+    form.parse(request, async function (err, fields, files: any) {
+      const images = await saveFile(files.file)
+      const {
+        name,
+        about,
+        phone,
+        instruction,
+        isOpenOnWeeks,
+        latitude,
+        longitude,
+      } = fields
+
+      const data: IResponseAxios = {
+        name,
+        about,
+        phone,
+        instruction,
+        isOpenOnWeeks,
+        latitude,
+        longitude,
+        images,
+      }
+
+      const orphanage = await fauna.query(
+        q.If(
+          q.Not(q.Exists(q.Match(q.Index('orphanage_by_name'), data.name))),
+          q.Create(q.Collection('orphanages'), { data }),
+          null
+        )
+      )
+
+      return response.status(200).json({ orphanage })
+    })
+  } catch (err) {}
 }
