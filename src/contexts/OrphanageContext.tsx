@@ -5,6 +5,7 @@ import {
   useEffect,
   useState,
 } from 'react'
+import { api } from '../service/api'
 
 type IOrphanages = {
   id: string
@@ -21,20 +22,23 @@ type IOrphanageProvider = {
   children: ReactNode
 }
 
-const orphanage = {
-  id: '1',
-  name: 'Orf. Esperança',
-  latitude: -23.6821604,
-  longitude: -46.8754915,
-}
-
 export const OrphanageContext = createContext({} as IOrphanageContext)
 
 export function OrphanageProvider({ children }: IOrphanageProvider) {
   const [orphanages, setOrphanages] = useState<IOrphanages[]>([])
 
+  async function fetchOrphanages() {
+    const {
+      data: { orphanages },
+    } = await api.get('/orphanages')
+
+    return orphanages.data
+  }
+
   useEffect(() => {
-    setOrphanages([orphanage])
+    fetchOrphanages().then((response) => {
+      setOrphanages([response])
+    })
   }, [])
 
   return (
