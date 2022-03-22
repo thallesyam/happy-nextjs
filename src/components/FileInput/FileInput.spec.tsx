@@ -87,7 +87,7 @@ describe('FileInput component', () => {
   })
 
   it('should add image to preview', async () => {
-    const { rerender } = render(
+    render(
       <FileInput
         previewImages={previewImages}
         handleSelectImages={handleSelectImages}
@@ -106,14 +106,6 @@ describe('FileInput component', () => {
 
     await waitFor(() => {
       expect(handleSelectImages).toBeCalledTimes(1)
-
-      rerender(
-        <FileInput
-          previewImages={previewImages}
-          handleSelectImages={handleSelectImages}
-          handleRemoveImage={handleRemoveImage}
-        />
-      )
     })
   })
 })
