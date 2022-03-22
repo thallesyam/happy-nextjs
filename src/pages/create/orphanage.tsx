@@ -133,6 +133,7 @@ export default function CreateOrphanage({ onSubmitTest }: ICreateOrphanage) {
 
     if (onSubmitTest) {
       onSubmitTest(orphanage)
+      return
     }
 
     const { data } = await api.post<IResponseAxios>(
@@ -215,6 +216,7 @@ export default function CreateOrphanage({ onSubmitTest }: ICreateOrphanage) {
 
               <div>
                 <button
+                  data-testid="afirmative-testid"
                   type="button"
                   onClick={handleClickOnConfirmButton}
                   className={`afirmative ${isOpenOnWeeks ? 'active' : ''}`}
@@ -222,6 +224,7 @@ export default function CreateOrphanage({ onSubmitTest }: ICreateOrphanage) {
                   Sim
                 </button>
                 <button
+                  data-testid="negative-testid"
                   type="button"
                   onClick={handleClickOnNegativeButton}
                   className={`negative ${!isOpenOnWeeks ? 'active' : ''}`}

@@ -49,21 +49,21 @@ export const Container = styled.section<IInput>`
     height: ${({ theme }) => (theme.height ? theme.height : '4rem')};
     color: var(--black);
   }
-`
 
-export const TextArea = styled.textarea<IInput>`
-  width: 100% !important;
-  margin: 0.5rem 0 0;
+  .textarea_element {
+    width: 100% !important;
+    margin: 0.5rem 0 0;
 
-  padding: 1rem;
-  border-radius: 20px;
+    padding: 1rem;
+    border-radius: 20px;
 
-  background-color: var(--white-500);
-  outline: none;
-  border: 1px solid var(--gray-300);
+    background-color: var(--white-500);
+    outline: none;
+    border: 1px solid var(--gray-300);
 
-  resize: none;
+    resize: none;
 
-  height: ${({ theme }) => (theme.height ? theme.height : '4rem')} !important;
-  color: var(--black);
+    height: ${({ theme }) => (theme.height ? theme.height : '4rem')};
+    color: var(--black);
+  }
 `

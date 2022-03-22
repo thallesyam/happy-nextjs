@@ -41,8 +41,6 @@ describe('MapForm component', () => {
       <MapForm handleMapClick={onSubmitTest} position={position} />
     )
 
-    screen.debug()
-
     const map = container.getElementsByClassName(
       'leaflet-marker-icon leaflet-zoom-hide'
     )[0]
@@ -59,8 +57,6 @@ describe('MapForm component', () => {
     const { container } = render(
       <MapForm handleMapClick={onSubmitTest} position={position} />
     )
-
-    screen.debug()
 
     const map = container.getElementsByClassName(
       'leaflet-marker-icon leaflet-zoom-hide'

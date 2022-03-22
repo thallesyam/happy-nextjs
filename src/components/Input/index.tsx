@@ -2,7 +2,7 @@ import { forwardRef, InputHTMLAttributes, TextareaHTMLAttributes } from 'react'
 import { FieldError } from 'react-hook-form'
 import InputMask from 'react-input-mask'
 
-import { Container, TextArea as TextAreaStyled } from './styles'
+import { Container } from './styles'
 
 type IInput = InputHTMLAttributes<HTMLInputElement> &
   TextareaHTMLAttributes<HTMLTextAreaElement> & {
@@ -49,10 +49,10 @@ function InputBase(
 
       <div className="input_container">
         {isTextArea ? (
-          <TextAreaStyled
+          <textarea
+            className="textarea_element"
             id={name}
             name={name}
-            theme={theme}
             {...rest}
             ref={ref}
           />

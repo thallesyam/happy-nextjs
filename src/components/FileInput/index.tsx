@@ -52,7 +52,7 @@ export function FileInput({
                   />
                 </svg>
               </span>
-              <img src={image.url} alt={'name'} className="new-image" />
+              <img src={image.url} alt={image.name} className="new-image" />
             </div>
           )
         })}
@@ -92,6 +92,7 @@ export function FileInput({
         accept=".png, .jpg, .jpeg"
         onChange={handleSelectImages}
         id="image[]"
+        data-testid="add-testid"
       />
     </Container>
   )
