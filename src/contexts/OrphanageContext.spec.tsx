@@ -46,4 +46,26 @@ describe('Context component', () => {
 
     expect(screen.getByText('fake-children'))
   })
+
+  it('should render correctly orphanages data after useEffect', () => {
+    const orphanagesInitial = []
+
+    const { rerender } = render(
+      <OrphanageContext.Provider value={{ orphanages: orphanagesInitial }}>
+        {orphanages.map((orphanage) => {
+          return <p key={orphanage.id}>{orphanage.name}</p>
+        })}
+      </OrphanageContext.Provider>
+    )
+
+    expect(screen.queryByText('Orf.Esperança')).not.toBeInTheDocument()
+
+    rerender(
+      <OrphanageContext.Provider value={{ orphanages }}>
+        <p key={orphanages[0].id}>{orphanages[0].name}</p>
+      </OrphanageContext.Provider>
+    )
+
+    expect(screen.queryByText('Orf. Esperança')).toBeInTheDocument()
+  })
 })

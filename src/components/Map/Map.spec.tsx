@@ -1,7 +1,16 @@
 import { render, screen } from '@testing-library/react'
 
-import { OrphanageProvider } from '../../contexts/OrphanageContext'
+import { OrphanageContext } from '../../contexts/OrphanageContext'
 import Map from '.'
+
+const orphanages = [
+  {
+    id: 'b6e2d350-f384-44b4-ac2d-f8334acdfe84',
+    name: 'Orfanato Esperança',
+    latitude: -23.535976332684992,
+    longitude: -46.602115631103516,
+  },
+]
 
 describe('Map component', () => {
   it('should redirect correctly link', () => {
@@ -17,9 +26,9 @@ describe('Map component', () => {
   it('not should render map marker', async () => {
     function RenderContextOrphanage() {
       return (
-        <OrphanageProvider>
+        <OrphanageContext.Provider value={{ orphanages }}>
           <Map />
-        </OrphanageProvider>
+        </OrphanageContext.Provider>
       )
     }
 
