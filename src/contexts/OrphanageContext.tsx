@@ -1,11 +1,5 @@
-import {
-  createContext,
-  ReactNode,
-  useContext,
-  useEffect,
-  useState,
-} from 'react'
-import { api } from '../service/api'
+import { createContext, ReactNode, useContext } from 'react'
+import { useFetch } from '../hooks/useFetch'
 
 type IOrphanages = {
   id: string
@@ -25,21 +19,7 @@ type IOrphanageProvider = {
 export const OrphanageContext = createContext({} as IOrphanageContext)
 
 export function OrphanageProvider({ children }: IOrphanageProvider) {
-  const [orphanages, setOrphanages] = useState<IOrphanages[]>([])
-
-  async function fetchOrphanages() {
-    const {
-      data: { orphanages },
-    } = await api.get('/orphanages')
-
-    return orphanages.data
-  }
-
-  useEffect(() => {
-    fetchOrphanages().then((response) => {
-      setOrphanages([response])
-    })
-  }, [])
+  const { orphanages } = useFetch({ link: '/orphanages' })
 
   return (
     <OrphanageContext.Provider value={{ orphanages }}>

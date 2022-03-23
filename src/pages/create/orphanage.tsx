@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { ChangeEvent, useState } from 'react'
+import { useState } from 'react'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm, SubmitHandler } from 'react-hook-form'
@@ -14,6 +14,7 @@ import { TitleForm } from '../../components/TitleGroup'
 import { Container } from '../../styles/pages/CreateOrphanage'
 import { LeafletMouseEvent } from 'leaflet'
 import { api } from '../../service/api'
+import { useImage } from '../../hooks/useImage'
 
 export type IPreviewImage = {
   name: string
@@ -64,9 +65,8 @@ export default function CreateOrphanage({ onSubmitTest }: ICreateOrphanage) {
   })
   const { errors, isSubmitting } = formState
 
+  const { images } = useImage()
   const [position, setPosition] = useState({ latitude: 0, longitude: 0 })
-  const [images, setImages] = useState<File[]>([])
-  const [previewImages, setPreviewImages] = useState<IPreviewImage[]>([])
   const [isOpenOnWeeks, setIsOpenOnWeeks] = useState(true)
 
   function handleClickOnConfirmButton() {
@@ -75,41 +75,6 @@ export default function CreateOrphanage({ onSubmitTest }: ICreateOrphanage) {
 
   function handleClickOnNegativeButton() {
     setIsOpenOnWeeks(false)
-  }
-
-  function handleSelectImages(event: ChangeEvent<HTMLInputElement>) {
-    if (!event.target.files) {
-      return
-    }
-
-    const selectedImages = Array.from(event.target.files)
-
-    event.target.value = ''
-
-    const allImages = [...images, ...selectedImages]
-
-    setImages(allImages)
-
-    const selectedPreviewImages = selectedImages.map((image) => {
-      return {
-        name: image.name,
-        url: URL.createObjectURL(image),
-      }
-    })
-
-    const allImagesPreview = [...previewImages, ...selectedPreviewImages]
-
-    setPreviewImages(allImagesPreview)
-  }
-
-  function handleRemoveImage(image: IPreviewImage) {
-    setPreviewImages(
-      previewImages.map((image) => image).filter((img) => img.url !== image.url)
-    )
-
-    setImages(
-      images.map((image) => image).filter((img) => img.name !== image.name)
-    )
   }
 
   function handleMapClick(event: LeafletMouseEvent) {
@@ -201,11 +166,7 @@ export default function CreateOrphanage({ onSubmitTest }: ICreateOrphanage) {
               {...register('phone')}
             />
 
-            <FileInput
-              previewImages={previewImages}
-              handleSelectImages={handleSelectImages}
-              handleRemoveImage={handleRemoveImage}
-            />
+            <FileInput />
 
             <TitleForm title="Visitação" />
 
