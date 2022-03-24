@@ -15,8 +15,11 @@ export default async function handler(
   }
 
   try {
-    const orphanages = await fauna.query(
-      q.Get(q.Ref(q.Collection('orphanages'), '326865203435143760'))
+    const orphanages: any = await fauna.query(
+      q.Map(
+        q.Paginate(q.Documents(q.Collection('orphanages'))),
+        q.Lambda((x) => q.Get(x))
+      )
     )
 
     return response.status(200).json({ orphanages })

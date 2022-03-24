@@ -11,6 +11,8 @@ const url = `https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}
 export default function Map() {
   const { orphanages } = useOrphanageContext()
 
+  console.log(orphanages)
+
   return (
     <Container>
       <Link href="/">
@@ -49,20 +51,24 @@ export default function Map() {
       >
         <TileLayer url={url} />
 
-        <Marker icon={mapIcon} position={[-23.54221, -46.47116]}>
-          {orphanages?.map((orphanage) => (
-            <div key={orphanage.id} data-testid="popup-testid">
+        {orphanages?.map(({ data }) => (
+          <Marker
+            key={data.id}
+            icon={mapIcon}
+            position={[data.latitude, data.longitude]}
+          >
+            <div data-testid="popup-testid">
               <Popup
                 closeButton={false}
                 minWidth={240}
                 maxWidth={240}
                 className="map-popup"
               >
-                <PopupLink orphanage={orphanage} />
+                <PopupLink orphanage={data} />
               </Popup>
             </div>
-          ))}
-        </Marker>
+          </Marker>
+        ))}
 
         <Link href="/create/orphanage" passHref>
           <a className="link-add-orphanage">

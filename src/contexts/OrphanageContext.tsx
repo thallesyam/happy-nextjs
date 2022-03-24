@@ -8,8 +8,12 @@ type IOrphanages = {
   longitude: number
 }
 
+type IDataOrphanages = {
+  data: IOrphanages
+}
+
 type IOrphanageContext = {
-  orphanages: IOrphanages[]
+  orphanages: IDataOrphanages[]
 }
 
 type IOrphanageProvider = {

@@ -8,12 +8,16 @@ type IOrphanages = {
   longitude: number
 }
 
+type IDataOrphanages = {
+  data: IOrphanages
+}
+
 type IUseFetch = {
   link: string
 }
 
 export function useFetch({ link }: IUseFetch) {
-  const [orphanages, setOrphanages] = useState<IOrphanages[]>([])
+  const [orphanages, setOrphanages] = useState<IDataOrphanages[]>([])
 
   useEffect(() => {
     async function fetchOrphanages() {
@@ -21,7 +25,7 @@ export function useFetch({ link }: IUseFetch) {
       const data = response?.data
       const orphanages = data?.orphanages
 
-      setOrphanages([orphanages?.data])
+      setOrphanages(orphanages?.data)
     }
 
     fetchOrphanages()

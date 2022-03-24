@@ -93,13 +93,17 @@ export default function Orhphanage({ orphanage }: IOrphanage) {
 
               <p>{orphanage?.about}</p>
 
-              {images.map((image) => {
-                return (
-                  <div key={image.url}>
-                    <img src={image.url} alt={image.name} />
-                  </div>
-                )
-              })}
+              <div>
+                {images.map((image, index) => {
+                  return (
+                    <img
+                      key={`${image.url}-${index}`}
+                      src={image.url}
+                      alt={image.name}
+                    />
+                  )
+                })}
+              </div>
 
               <MapWithNoSSR orphanage={orphanage} />
 

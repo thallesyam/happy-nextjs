@@ -137,5 +137,7 @@ export default function handler(
 
       return response.status(200).json({ orphanage })
     })
-  } catch (err) {}
+  } catch (err) {
+    return response.status(500).json({ mgs: err })
+  }
 }
