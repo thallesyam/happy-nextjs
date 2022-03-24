@@ -141,8 +141,6 @@ export default function CreateOrphanage({ onSubmitTest }: ICreateOrphanage) {
     formData.append('longitude', String(position.longitude))
     formData.append('isOpenOnWeeks', String(isOpenOnWeeks))
 
-    console.log(images)
-
     images.forEach((image) => {
       formData.append('file', image)
     })
