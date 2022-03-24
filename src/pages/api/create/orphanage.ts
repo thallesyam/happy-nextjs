@@ -65,11 +65,11 @@ async function saveFile(files: File[]) {
 
       fs.writeFileSync(`./public/upload/${file.originalFilename}`, data)
 
-      const image = await uploadImageToCloud(file)
+      // const image = await uploadImageToCloud(file)
 
-      fs.unlink(`./public/upload/${file.originalFilename}`, (err) => {
-        console.log(`./public/upload/${file.originalFilename}`)
-      })
+      // fs.unlink(`./public/upload/${file.originalFilename}`, (err) => {
+      //   console.log(`./public/upload/${file.originalFilename}`)
+      // })
 
       return {
         url: image.secure_url,
