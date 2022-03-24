@@ -46,7 +46,7 @@ async function uploadImageToCloud(file: File): Promise<IImageUpload> {
     `./public/upload/${file.originalFilename}`,
     (error: Error, result: IImageUpload) => {
       if (!!error) {
-        console.log('Image error: ', error)
+        console.log('Image error: ')
       }
 
       return result

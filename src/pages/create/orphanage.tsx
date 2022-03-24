@@ -157,18 +157,22 @@ export default function CreateOrphanage({ onSubmitTest }: ICreateOrphanage) {
       return
     }
 
-    const { status } = await api.post<IResponseAxios>(
-      '/create/orphanage',
-      formData
-    )
+    try {
+      const { status } = await api.post<IResponseAxios>(
+        '/create/orphanage',
+        formData
+      )
 
-    setCookie(null, '@sucessCookie', 'true', {
-      maxAge: 30 * 24 * 60 * 60,
-      path: '/',
-    })
+      setCookie(null, '@sucessCookie', 'true', {
+        maxAge: 30 * 24 * 60 * 60,
+        path: '/',
+      })
 
-    if (status === 200) {
-      router.push('/success')
+      if (status === 200) {
+        router.push('/success')
+      }
+    } catch (error) {
+      console.log('ERROR: ', error)
     }
   }
 
