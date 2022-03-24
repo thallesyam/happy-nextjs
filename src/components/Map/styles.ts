@@ -15,6 +15,10 @@ export const Container = styled.section`
     text-decoration: none;
     color: var(--gray-700);
     font-weight: 700;
+
+    @media (max-width: 768px) {
+      display: none;
+    }
   }
 
   .leaflet-container {

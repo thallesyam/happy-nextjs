@@ -11,7 +11,7 @@ export const Container = styled.section`
   .wrapper-logo-happy {
     position: absolute;
     z-index: 10;
-    top: 50%;
+    top: 47%;
     right: 50%;
     transform: translate(50%, -50%);
 
