@@ -1,43 +1,25 @@
-import { waitFor } from '@testing-library/react'
 import { renderHook, act } from '@testing-library/react-hooks'
+import { api } from '../../service/api'
 import { useFetch } from '../useFetch'
 
-import { rest } from 'msw'
-import { setupServer } from 'msw/node'
+jest.mock('../../service/api')
 
-const orphanages = [
-  {
-    id: '1',
-    name: 'Orf. Esperança',
-    latitude: -23.6821604,
-    longitude: -46.8754915,
-  },
-  {
-    id: '2',
-    name: 'Orf. Esperança 23',
-    latitude: -23.6821604,
-    longitude: -46.8754915,
-  },
-]
+function getControlledPromise() {
+  let deffered: any
 
-describe('Context component', () => {
-  const server = setupServer(
-    rest.get('/api/orphanages', (_, res, ctx) => {
-      return res(ctx.json({ name: 'Thalles' }))
-    })
-  )
+  const promise: any = new Promise((resolve, reject) => {
+    deffered = { resolve, reject }
+  })
 
-  beforeAll(() => server.listen())
+  return { deffered, promise }
+}
 
-  afterEach(() => server.resetHandlers())
+describe('useFetch component', () => {
+  it('should render correctly orphanages api link', async () => {
+    api.get = jest.fn()
 
-  afterAll(() => server.close())
+    await act(async () => renderHook(() => useFetch({ link: '/orphanages' })))
 
-  it('should render correctly orphanages result', () => {
-    const { result } = renderHook(() => useFetch({ link: '/orphanages' }))
-
-    act(() => {
-      result.current.fetchOrphanages()
-    })
+    expect(api.get).toBeCalledWith('/orphanages')
   })
 })
