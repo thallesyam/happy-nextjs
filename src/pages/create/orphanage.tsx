@@ -136,7 +136,7 @@ export default function CreateOrphanage({ onSubmitTest }: ICreateOrphanage) {
     formData.append('about', about)
     formData.append('hours', hours)
     formData.append('instruction', instruction)
-    formData.append('phone', phone)
+    formData.append('phone', String(phone))
     formData.append('latitude', String(position.latitude))
     formData.append('longitude', String(position.longitude))
     formData.append('isOpenOnWeeks', String(isOpenOnWeeks))
@@ -243,6 +243,7 @@ export default function CreateOrphanage({ onSubmitTest }: ICreateOrphanage) {
 
               <Input
                 notMaskedInput={false}
+                type="number"
                 error={errors.phone}
                 name="phone"
                 labelName="Número de Whatsapp"
