@@ -1,8 +1,13 @@
+import { useRouter } from 'next/router'
+import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import { ChangeEvent, useState } from 'react'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm, SubmitHandler } from 'react-hook-form'
+import { setCookie } from 'nookies'
+import { LeafletMouseEvent } from 'leaflet'
+import { api } from '../../service/api'
 
 import { Button } from '../../components/Button'
 import { FileInput } from '../../components/FileInput'
@@ -12,10 +17,6 @@ import { Layout } from '../../components/Layout'
 import { Sidebar } from '../../components/Sidebar'
 import { TitleGroup } from '../../components/TitleGroup'
 import { Container } from '../../styles/pages/CreateOrphanage'
-import { LeafletMouseEvent } from 'leaflet'
-import { api } from '../../service/api'
-import { useRouter } from 'next/router'
-import Link from 'next/link'
 
 export type IPreviewImage = {
   name: string
@@ -162,6 +163,11 @@ export default function CreateOrphanage({ onSubmitTest }: ICreateOrphanage) {
       '/create/orphanage',
       formData
     )
+
+    setCookie(null, '@sucessCookie', 'true', {
+      maxAge: 30 * 24 * 60 * 60,
+      path: '/',
+    })
 
     if (status === 200) {
       router.push('/success')

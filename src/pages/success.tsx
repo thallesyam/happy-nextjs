@@ -53,11 +53,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
   }
 
-  nookies.set(context, '@sucessCookie', 'true', {
-    maxAge: 30 * 24 * 60 * 60,
-    path: '/success',
-  })
-
   return {
     props: {},
   }
