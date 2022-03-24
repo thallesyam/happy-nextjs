@@ -243,7 +243,6 @@ export default function CreateOrphanage({ onSubmitTest }: ICreateOrphanage) {
 
               <Input
                 notMaskedInput={false}
-                type="number"
                 error={errors.phone}
                 name="phone"
                 labelName="Número de Whatsapp"
