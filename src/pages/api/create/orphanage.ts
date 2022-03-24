@@ -43,7 +43,7 @@ export const config = {
 
 async function uploadImageToCloud(file: File): Promise<IImageUpload> {
   const image = cloudinary.v2.uploader.upload(
-    file,
+    `${file.filepath}`,
     (error: Error, result: IImageUpload) => {
       if (!!error) {
         console.log('Image error: ')
