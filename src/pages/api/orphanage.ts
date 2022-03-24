@@ -22,5 +22,6 @@ export default async function handler(
     return response.status(200).json({ orphanage })
   } catch (error) {
     console.log('Error: ', error)
+    return response.status(200)
   }
 }

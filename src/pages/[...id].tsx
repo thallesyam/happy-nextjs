@@ -44,8 +44,6 @@ export default function Orhphanage({ orphanage }: IOrphanage) {
 
   const link = `https://api.whatsapp.com/send?phone=${phone}&text=Agendar%20hor%C3%A1rio%20de%20visita%20ao%20orfanato`
 
-  console.log(phone)
-
   return (
     <Layout title="Criar orfanato">
       <Container>

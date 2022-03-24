@@ -15,6 +15,7 @@ import { Container } from '../../styles/pages/CreateOrphanage'
 import { LeafletMouseEvent } from 'leaflet'
 import { api } from '../../service/api'
 import { useImage } from '../../hooks/useImage'
+import { useRouter } from 'next/router'
 
 export type IPreviewImage = {
   name: string
@@ -60,6 +61,8 @@ export default function CreateOrphanage({ onSubmitTest }: ICreateOrphanage) {
   const MapWithNoSSR = dynamic(() => import('../../components/MapForm'), {
     ssr: false,
   })
+
+  const router = useRouter()
   const { register, handleSubmit, formState } = useForm({
     resolver: yupResolver(createOrphanageFormSchema),
   })
@@ -117,12 +120,14 @@ export default function CreateOrphanage({ onSubmitTest }: ICreateOrphanage) {
       return
     }
 
-    const { data } = await api.post<IResponseAxios>(
+    const { status } = await api.post<IResponseAxios>(
       '/create/orphanage',
       formData
     )
 
-    console.log(data)
+    if (status === 200) {
+      router.push('/success')
+    }
   }
 
   return (

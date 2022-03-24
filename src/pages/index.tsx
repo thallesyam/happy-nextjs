@@ -1,4 +1,6 @@
+import { GetServerSideProps } from 'next'
 import { motion } from 'framer-motion'
+import nookies from 'nookies'
 
 import { Header } from '../components/Header'
 import { Layout } from '../components/Layout'
@@ -32,4 +34,12 @@ export default function Home() {
       </Container>
     </Layout>
   )
+}
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  nookies.destroy(context, '@sucessCookie')
+
+  return {
+    props: {},
+  }
 }
