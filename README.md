@@ -118,9 +118,9 @@ Gostaria muito de receber a sua ajuda, esse projeto foi desenvolvido com muito c
 
 Tenho alguns objetivos futuros para esse projeto, se estiver pensando em contribuir e estiver sem ideia pode dar uma olhada nessa lista também:
 
-[] - Cobrir 100% do projeto com os testes
-[] - Criar telas para o admin
-[] - Implementar graphql ou react query ao projeto
+- [] Cobrir 100% do projeto com os testes
+- [] Criar telas para o admin
+- [] Implementar graphql ou react query ao projeto
 
 ## 📜 License
 
