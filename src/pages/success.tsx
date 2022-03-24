@@ -1,5 +1,4 @@
 import { GetServerSideProps } from 'next'
-import Link from 'next/link'
 import nookies from 'nookies'
 import { Button } from '../components/Button'
 import { Layout } from '../components/Layout'
@@ -17,20 +16,18 @@ export default function Success() {
             Agora é só esperar {':)'}
           </p>
 
-          <Link href="/location" passHref>
-            <a>
-              <Button
-                bgColor="#31B272"
-                textHoverColor="#fff"
-                hover="#3BD689"
-                width="243px"
-                height="4rem"
-                fontSize="18px"
-              >
-                Voltar para o mapa
-              </Button>
-            </a>
-          </Link>
+          <a href="/location">
+            <Button
+              bgColor="#31B272"
+              textHoverColor="#fff"
+              hover="#3BD689"
+              width="243px"
+              height="4rem"
+              fontSize="18px"
+            >
+              Voltar para o mapa
+            </Button>
+          </a>
         </div>
 
         <div>
