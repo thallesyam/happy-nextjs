@@ -134,95 +134,100 @@ export default function CreateOrphanage({ onSubmitTest }: ICreateOrphanage) {
           <h1>Adicione um orfanato</h1>
 
           <FormContainer onSubmit={handleSubmit(handleCreateOrphanage)}>
-            <TitleForm title="Dados" />
+            <section className="form_wrapper">
+              <TitleForm title="Dados" />
 
-            <MapWithNoSSR handleMapClick={handleMapClick} position={position} />
+              <MapWithNoSSR
+                handleMapClick={handleMapClick}
+                position={position}
+              />
 
-            <Input
-              error={errors.name}
-              name="name"
-              labelName="Nome"
-              {...register('name')}
-            />
+              <Input
+                error={errors.name}
+                name="name"
+                labelName="Nome"
+                {...register('name')}
+              />
 
-            <Input
-              error={errors.about}
-              isTextArea
-              name="about"
-              height="7.5rem"
-              labelName="Sobre"
-              labelDescription="Máximo de 300 catacteres"
-              maxLength={300}
-              {...register('about')}
-            />
+              <Input
+                error={errors.about}
+                isTextArea
+                name="about"
+                height="7.5rem"
+                labelName="Sobre"
+                labelDescription="Máximo de 300 catacteres"
+                maxLength={300}
+                {...register('about')}
+              />
 
-            <Input
-              notMaskedInput={false}
-              error={errors.phone}
-              name="phone"
-              labelName="Número de Whatsapp"
-              mask="(99) 99999-9999"
-              maskChar=" "
-              {...register('phone')}
-            />
+              <Input
+                notMaskedInput={false}
+                error={errors.phone}
+                name="phone"
+                labelName="Número de Whatsapp"
+                mask="(99) 99999-9999"
+                maskChar=" "
+                {...register('phone')}
+              />
 
-            <FileInput />
+              <FileInput />
 
-            <TitleForm title="Visitação" />
+              <TitleForm title="Visitação" />
 
-            <Input
-              error={errors.instruction}
-              isTextArea
-              name="instruction"
-              height="7.5rem"
-              labelName="Instruções"
-              maxLength={300}
-              {...register('instruction')}
-            />
+              <Input
+                error={errors.instruction}
+                isTextArea
+                name="instruction"
+                height="7.5rem"
+                labelName="Instruções"
+                maxLength={300}
+                {...register('instruction')}
+              />
 
-            <Input
-              notMaskedInput={false}
-              error={errors.hours}
-              name="hours"
-              labelName="Horário das visitas"
-              mask="D\as 99 às 99"
-              maskChar=" "
-              {...register('hours')}
-            />
+              <Input
+                notMaskedInput={false}
+                error={errors.hours}
+                name="hours"
+                labelName="Horário das visitas"
+                mask="D\as 99 às 99"
+                maskChar=" "
+                {...register('hours')}
+              />
 
-            <div className="boolean_container">
-              <label>Atende fim de semana?</label>
+              <div className="boolean_container">
+                <label>Atende fim de semana?</label>
 
-              <div>
-                <button
-                  data-testid="afirmative-testid"
-                  type="button"
-                  onClick={handleClickOnConfirmButton}
-                  className={`afirmative ${isOpenOnWeeks ? 'active' : ''}`}
-                >
-                  Sim
-                </button>
-                <button
-                  data-testid="negative-testid"
-                  type="button"
-                  onClick={handleClickOnNegativeButton}
-                  className={`negative ${!isOpenOnWeeks ? 'active' : ''}`}
-                >
-                  Não
-                </button>
+                <div>
+                  <button
+                    data-testid="afirmative-testid"
+                    type="button"
+                    onClick={handleClickOnConfirmButton}
+                    className={`afirmative ${isOpenOnWeeks ? 'active' : ''}`}
+                  >
+                    Sim
+                  </button>
+                  <button
+                    data-testid="negative-testid"
+                    type="button"
+                    onClick={handleClickOnNegativeButton}
+                    className={`negative ${!isOpenOnWeeks ? 'active' : ''}`}
+                  >
+                    Não
+                  </button>
+                </div>
               </div>
-            </div>
 
-            <Button
-              data-testid="submit-testid"
-              width="548px"
-              textHoverColor="#fff"
-              bgColor="#37C77F"
-              hover="#3EE08F"
-              type="submit"
-            >
-              {isSubmitting ? 'Carregando...' : 'Confirmar'}
-            </Button>
+              <Button
+                data-testid="submit-testid"
+                width="548px"
+                textHoverColor="#fff"
+                bgColor="#37C77F"
+                hover="#3EE08F"
+                type="submit"
+              >
+                {isSubmitting ? 'Carregando...' : 'Confirmar'}
+              </Button>
+            </section>
           </FormContainer>
         </section>
       </Container>

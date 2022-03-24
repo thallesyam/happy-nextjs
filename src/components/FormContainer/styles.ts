@@ -6,8 +6,6 @@ export const Container = styled.form`
 
   margin-bottom: 2rem;
 
-  padding: 4rem 5rem;
-
   border-radius: 1.25rem;
 
   background-color: var(--white);

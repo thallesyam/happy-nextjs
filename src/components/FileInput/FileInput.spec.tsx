@@ -8,7 +8,5 @@ describe('FileInput component', () => {
     const { result } = renderHook(() => useImage())
 
     const { container, rerender } = render(<FileInput />)
-
-    screen.debug()
   })
 })

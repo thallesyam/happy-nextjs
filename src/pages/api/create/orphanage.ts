@@ -28,6 +28,7 @@ type IResponseAxios = {
   instruction: string | string[]
   images: IImage[]
   isOpenOnWeeks: string | string[]
+  hours: string | string[]
   latitude: string | string[]
   longitude: string | string[]
   createdAt: number
@@ -101,6 +102,7 @@ export default function handler(
         name,
         about,
         phone,
+        hours,
         instruction,
         isOpenOnWeeks,
         latitude,
@@ -112,6 +114,7 @@ export default function handler(
         name,
         about,
         phone,
+        hours,
         instruction,
         isOpenOnWeeks,
         latitude,

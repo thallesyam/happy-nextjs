@@ -4,12 +4,15 @@ export const Container = styled.section`
   display: grid;
   grid-template-columns: 96px 1fr;
 
-
-
   > section {
     display: flex;
     align-items: center;
     flex-direction: column;
+
+    .form_wrapper {
+      padding: 4rem 5rem;
+
+    }
 
     > h1 {
       margin: 2.5rem 0;
