@@ -25,7 +25,7 @@ export default class MyDocument extends Document {
           />
 
           <link rel="shortcut icon" href="/favicon.ico" type="image/png" />
-          <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+          <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
 
         </Head>
