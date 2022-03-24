@@ -4,17 +4,48 @@ export const Container = styled.section`
   display: grid;
   grid-template-columns: 96px 1fr;
 
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+
   > section {
     display: flex;
     align-items: center;
     flex-direction: column;
 
-    > h1 {
-      margin: 2.5rem 0;
-      font-size: 1.125rem;
+    .title {
+      > h1 {
+        margin: 2.5rem 0;
+        font-size: 1.125rem;
 
-      color: var(--gray-500);
-      font-weight: 500;
+        color: var(--gray-500);
+        font-weight: 500;
+      }
+
+      svg {
+        display: none;
+      }
+
+      @media (max-width: 768px) {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+
+        svg {
+          display: block;
+        }
+      }
+    }
+
+      > h1 {
+        margin: 2.5rem 0;
+        font-size: 1.125rem;
+
+        color: var(--gray-500);
+        font-weight: 500;
+      }
     }
   }
 `
@@ -41,6 +72,10 @@ export const WrapperInfo = styled.div`
   > div {
     padding: 0 5rem 4rem;
 
+    @media (max-width: 768px) {
+      padding: 0 2rem 4rem;
+    }
+
     > h1 {
       font-size: 3rem;
       font-weight: 700;
@@ -64,6 +99,11 @@ export const WrapperInfo = styled.div`
 
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
+
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 0.5rem;
+      }
 
       > img {
         width: 152px;

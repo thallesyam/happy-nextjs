@@ -7,6 +7,10 @@ export const Container = styled.main`
 
   align-items: center;
 
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+
   .text-section {
     > h1 {
       font-size: 5rem;
@@ -24,15 +28,27 @@ export const Container = styled.main`
 
       color: var(--white);
     }
+
+    @media (max-width: 768px) {
+      padding: 40px 1rem;
+    }
   }
 
   .image-section {
     display: flex;
     position: relative;
 
+    @media (max-width: 768px) {
+      position: unset;
+    }
+
     > img {
       position: relative;
       top: -7rem;
+
+      @media (max-width: 768px) {
+        display: none;
+      }
     }
 
     > a {
@@ -42,6 +58,10 @@ export const Container = styled.main`
 
       display: block;
       width: 5.5rem;
+
+      @media (max-width: 768px) {
+        left: 1rem;
+      }
     }
   }
 `

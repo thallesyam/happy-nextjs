@@ -50,7 +50,37 @@ export default function Orhphanage({ orphanage }: IOrphanage) {
         <Sidebar />
 
         <section>
-          <h1>Orfanato</h1>
+          <div className="title">
+            <Link href="/location">
+              <a>
+                <svg
+                  data-testid="svg-testid"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M19 12L5 12"
+                    stroke="#8FA7B2"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M12 19L5 12L12 4.99999"
+                    stroke="#8FA7B2"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </a>
+            </Link>
+
+            <h1>Orfanato</h1>
+          </div>
 
           <WrapperInfo>
             <img

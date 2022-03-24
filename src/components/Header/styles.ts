@@ -19,4 +19,13 @@ export const Header = styled.header`
     max-width: 222px;
     text-decoration: none;
   }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    padding: 2rem 1rem;
+
+    button {
+      display: none;
+    }
+  }
 `

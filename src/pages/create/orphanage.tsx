@@ -10,12 +10,13 @@ import { FormContainer } from '../../components/FormContainer'
 import { Input } from '../../components/Input'
 import { Layout } from '../../components/Layout'
 import { Sidebar } from '../../components/Sidebar'
-import { TitleForm } from '../../components/TitleGroup'
+import { TitleGroup } from '../../components/TitleGroup'
 import { Container } from '../../styles/pages/CreateOrphanage'
 import { LeafletMouseEvent } from 'leaflet'
 import { api } from '../../service/api'
 import { useImage } from '../../hooks/useImage'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 
 export type IPreviewImage = {
   name: string
@@ -136,11 +137,41 @@ export default function CreateOrphanage({ onSubmitTest }: ICreateOrphanage) {
         <Sidebar />
 
         <section>
-          <h1>Adicione um orfanato</h1>
+          <div className="title">
+            <Link href="/location">
+              <a>
+                <svg
+                  data-testid="svg-testid"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M19 12L5 12"
+                    stroke="#8FA7B2"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M12 19L5 12L12 4.99999"
+                    stroke="#8FA7B2"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </a>
+            </Link>
+
+            <h1>Adicione um orfanato</h1>
+          </div>
 
           <FormContainer onSubmit={handleSubmit(handleCreateOrphanage)}>
             <section className="form_wrapper">
-              <TitleForm title="Dados" />
+              <TitleGroup title="Dados" />
 
               <MapWithNoSSR
                 handleMapClick={handleMapClick}
@@ -177,7 +208,7 @@ export default function CreateOrphanage({ onSubmitTest }: ICreateOrphanage) {
 
               <FileInput />
 
-              <TitleForm title="Visitação" />
+              <TitleGroup title="Visitação" />
 
               <Input
                 error={errors.instruction}

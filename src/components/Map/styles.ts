@@ -16,6 +16,10 @@ export const Container = styled.section`
 
       width: 64px;
       height: 64px;
+
+      @media (max-width: 768px) {
+        left: 42%;
+      }
     }
   }
 

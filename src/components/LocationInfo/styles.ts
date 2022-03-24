@@ -32,4 +32,8 @@ export const Container = styled.aside`
       margin-bottom: 1.5rem;
     }
   }
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `

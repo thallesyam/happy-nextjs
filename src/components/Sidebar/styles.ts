@@ -20,4 +20,8 @@ export const Container = styled.aside`
     width: 3rem;
     height: 3rem;
   }
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `

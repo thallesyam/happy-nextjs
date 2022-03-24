@@ -5,7 +5,7 @@ type TitleFormProps = {
   isNotShowBorder?: boolean
 }
 
-export function TitleForm({ title, isNotShowBorder = false }: TitleFormProps) {
+export function TitleGroup({ title, isNotShowBorder = false }: TitleFormProps) {
   return (
     <Container>
       <h1>{title}</h1>
