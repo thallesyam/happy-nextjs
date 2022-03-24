@@ -13,11 +13,34 @@ export const Container = styled.section`
   justify-content: center;
   align-items: center;
 
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+
   > div {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+
+    &:nth-child(1) {
+      @media (max-width: 768px) {
+        display: flex;
+        order: 2;
+      }
+    }
+    &:nth-child(2) {
+      @media (max-width: 768px) {
+        display: flex;
+        order: 1;
+      }
+    }
+
+    @media (max-width: 768px) {
+      img {
+        width: 200px;
+      }
+    }
 
     > h1 {
       color: var(--white);

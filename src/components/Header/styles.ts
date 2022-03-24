@@ -27,5 +27,11 @@ export const Header = styled.header`
     button {
       display: none;
     }
+
+    a {
+      > img {
+        max-width: 200px;
+      }
+    }
   }
 `

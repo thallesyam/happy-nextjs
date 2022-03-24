@@ -14,6 +14,11 @@ export const Container = styled.section`
     top: 50%;
     right: 50%;
     transform: translate(50%, -50%);
+
+    @media (max-width: 768px) {
+      top: 45%;
+      left: 40%;
+    }
   }
 `
 

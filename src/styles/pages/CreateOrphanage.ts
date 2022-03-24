@@ -41,12 +41,10 @@ export const Container = styled.section`
         justify-content: space-between;
         width: 100%;
 
-        > svg {
+        svg {
           display: block;
         }
       }
-
-
     }
 
       .boolean_container {

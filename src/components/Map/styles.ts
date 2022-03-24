@@ -1,6 +1,22 @@
 import styled from 'styled-components'
 
 export const Container = styled.section`
+  > a {
+    z-index: 999;
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+
+    display: flex;
+    align-items: center;
+
+    gap: 1rem;
+
+    text-decoration: none;
+    color: var(--gray-700);
+    font-weight: 700;
+  }
+
   .leaflet-container {
     position: relative;
 
