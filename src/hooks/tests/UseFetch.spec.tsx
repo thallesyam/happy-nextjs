@@ -22,4 +22,24 @@ describe('useFetch component', () => {
 
     expect(api.get).toBeCalledWith('/orphanages')
   })
+
+  it('should render correctly orphanages reslt', async () => {
+    const { deffered, promise } = getControlledPromise()
+
+    api.get = jest.fn(() => promise)
+
+    const { result, waitForNextUpdate } = renderHook(() =>
+      useFetch({ link: '/orphanages' })
+    )
+
+    deffered.resolve({
+      data: () => ({
+        orphanages: [],
+      }),
+    })
+
+    await waitForNextUpdate()
+
+    expect(result.current.orphanages).toBeTruthy()
+  })
 })

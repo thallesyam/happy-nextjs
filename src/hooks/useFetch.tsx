@@ -18,11 +18,8 @@ export function useFetch({ link }: IUseFetch) {
   useEffect(() => {
     async function fetchOrphanages() {
       const response = await api.get(link)
-      const orphanages = response?.data
 
-      if (!!!orphanages) {
-        setOrphanages([])
-      }
+      const orphanages = response?.data
 
       setOrphanages([orphanages?.data])
     }
