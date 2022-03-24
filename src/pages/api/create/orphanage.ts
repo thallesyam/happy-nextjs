@@ -122,7 +122,7 @@ export default function handler(
         isOpenOnWeeks,
         latitude,
         longitude,
-        // images,
+        images,
         createdAt: moment().unix(),
         updatedAt: moment().unix(),
       }
