@@ -26,7 +26,7 @@ type IResponseAxios = {
   about: string | string[]
   phone: string | string[]
   instruction: string | string[]
-  // images: IImage[]
+  images: IImage[]
   isOpenOnWeeks: string | string[]
   hours: string | string[]
   latitude: string | string[]
@@ -97,7 +97,7 @@ export default function handler(
     })
 
     form.parse(request, async function (err, fields, files: any) {
-      // const images = await saveFile(files.file)
+      const images = await saveFile(files.file)
 
       const {
         name,
