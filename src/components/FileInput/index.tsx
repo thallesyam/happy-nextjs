@@ -1,9 +1,18 @@
-import { useImage } from '../../hooks/useImage'
+import { ChangeEvent } from 'react'
+import { IPreviewImage } from '../../pages/create/orphanage'
 import { Container, LabelNewImage, ImageContainer } from './styles'
 
-export function FileInput() {
-  const { previewImages, handleRemoveImage, handleSelectImages } = useImage()
+type IFIleInput = {
+  previewImages: IPreviewImage[]
+  handleRemoveImage: (image: IPreviewImage) => void
+  handleSelectImages: (event: ChangeEvent<HTMLInputElement>) => void
+}
 
+export function FileInput({
+  previewImages,
+  handleRemoveImage,
+  handleSelectImages,
+}: IFIleInput) {
   const theme = {
     grid: previewImages.length > 0,
   }

@@ -57,7 +57,7 @@ async function uploadImageToCloud(file: File): Promise<IImageUpload> {
 }
 
 async function saveFile(files: File[]) {
-  const receivedFiles = files.length > 1 ? files : Array(files)
+  const receivedFiles = files?.length > 1 ? files : Array(files)
 
   const images = await Promise.all(
     receivedFiles.map(async (file) => {
@@ -98,6 +98,7 @@ export default function handler(
 
     form.parse(request, async function (err, fields, files: any) {
       const images = await saveFile(files.file)
+
       const {
         name,
         about,
@@ -108,6 +109,8 @@ export default function handler(
         latitude,
         longitude,
       } = fields
+
+      console.log(fields)
 
       const data: IResponseAxios = {
         id: uuid(),

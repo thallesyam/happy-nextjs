@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { Header as HeaderStyled } from './styles'
 import { Button } from '../Button'
 import { Location } from '../Location'
